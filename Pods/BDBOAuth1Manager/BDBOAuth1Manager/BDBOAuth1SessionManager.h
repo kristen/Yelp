@@ -1,7 +1,7 @@
 //
 //  BDBOAuth1SessionManager.h
 //
-//  Copyright (c) 2013-2014 Bradley David Bergeron
+//  Copyright (c) 2014 Bradley David Bergeron
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy of
 //  this software and associated documentation files (the "Software"), to deal in
@@ -28,91 +28,27 @@
 #pragma mark -
 @interface BDBOAuth1SessionManager : AFHTTPSessionManager
 
-/**
- *  BDBOAuth1RequestSerializer instance used to serialize HTTP requests.
- */
-@property (nonatomic) BDBOAuth1RequestSerializer *requestSerializer;
-
-
-/**
- *  ---------------------------------------------------------------------------------------
- * @name Initialization
- *  ---------------------------------------------------------------------------------------
- */
-#pragma mark Initialization
-
-/**
- *  Initialize a new BDBOAuth1SessionManager instance with the given baseURL, consumerKey, and consumerSecret.
- *
- *  @param baseURL        Base URL for HTTP requests.
- *  @param consumerKey    OAuth consumer key.
- *  @param consumerSecret OAuth consumer secret.
- *
- *  @return New BDBOAuth1SessionManager instance.
- */
-- (instancetype)initWithBaseURL:(NSURL *)baseURL
-                    consumerKey:(NSString *)consumerKey
-                 consumerSecret:(NSString *)consumerSecret;
-
-
-/**
- *  ---------------------------------------------------------------------------------------
- * @name Authorization Status
- *  ---------------------------------------------------------------------------------------
- */
-#pragma mark Authorization Status
-
-/**
- *  Check whehter or not this manager instance has a valid access token.
- */
+@property (nonatomic, strong) BDBOAuth1RequestSerializer *requestSerializer;
 @property (nonatomic, assign, readonly, getter = isAuthorized) BOOL authorized;
 
-/**
- *  Deauthorize this manager instance and remove any associated access token from the keychain.
- *
- *  @return YES if an access token was found and removed from the keychain, NO otherwise.
- */
+#pragma mark Initialization
+- (instancetype)initWithBaseURL:(NSURL *)url consumerKey:(NSString *)key consumerSecret:(NSString *)secret;
+
+#pragma mark Deauthorize
 - (BOOL)deauthorize;
 
-
-/**
- *  ---------------------------------------------------------------------------------------
- * @name OAuth Handshake
- *  ---------------------------------------------------------------------------------------
- */
-#pragma mark OAuth Handshake
-
-/**
- *  Fetch an OAuth request token.
- *
- *  @param requestPath OAuth request token endpoint.
- *  @param method      HTTP method for fetching OAuth request token.
- *  @param callbackURL The URL to be set for oauth_callback.
- *  @param scope       Authorization scope.
- *  @param success     Completion block performed upon successful acquisition of the OAuth request token.
- *  @param failure     Completion block performed if the OAuth request token could not be acquired.
- */
+#pragma mark Authorization Flow
 - (void)fetchRequestTokenWithPath:(NSString *)requestPath
                            method:(NSString *)method
                       callbackURL:(NSURL *)callbackURL
                             scope:(NSString *)scope
-                          success:(void (^)(BDBOAuth1Credential *requestToken))success
+                          success:(void (^)(BDBOAuthToken *requestToken))success
                           failure:(void (^)(NSError *error))failure;
 
-
-/**
- *  Fetch an OAuth access token using a previously-acquired request token.
- *
- *  @param accessPath   OAuth access token endpoint.
- *  @param method       HTTP method for fetching OAuth access token.
- *  @param requestToken OAuth request token.
- *  @param success      Completion block performed upon successful acquisition of the OAuth access token.
- *  @param failure      Completion block performed if the OAuth access token could not be acquired.
- */
 - (void)fetchAccessTokenWithPath:(NSString *)accessPath
                           method:(NSString *)method
-                    requestToken:(BDBOAuth1Credential *)requestToken
-                         success:(void (^)(BDBOAuth1Credential *accessToken))success
+                    requestToken:(BDBOAuthToken *)requestToken
+                         success:(void (^)(BDBOAuthToken *accessToken))success
                          failure:(void (^)(NSError *error))failure;
 
 @end

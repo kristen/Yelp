@@ -1,7 +1,7 @@
 //
 //  NSDictionary+BDBOAuth1Manager.m
 //
-//  Copyright (c) 2013-2014 Bradley David Bergeron
+//  Copyright (c) 2014 Bradley David Bergeron
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy of
 //  this software and associated documentation files (the "Software"), to deal in
@@ -27,27 +27,32 @@
 #pragma mark -
 @implementation NSDictionary (BDBOAuth1Manager)
 
-#pragma mark Query String
-+ (instancetype)bdb_dictionaryFromQueryString:(NSString *)queryString {
-    NSArray *components = [queryString componentsSeparatedByString:@"&"];
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-
-    for (NSString *component in components) {
-        NSArray *keyValue = [component componentsSeparatedByString:@"="];
-        dictionary[[keyValue[0] bdb_URLDecode]] = [keyValue[1] bdb_URLDecode];
-    }
-
-    return [[[self class] alloc] initWithDictionary:dictionary];
++ (instancetype)dictionaryFromQueryString:(NSString *)queryString
+{
+    return [[[self class] alloc] bdb_initWithQueryString:queryString];
 }
 
-- (NSString *)bdb_queryStringRepresentation {
-    NSMutableArray *paramArray = [NSMutableArray array];
+- (instancetype)bdb_initWithQueryString:(NSString *)queryString
+{
+    NSArray *components = [queryString componentsSeparatedByString:@"&"];
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    
+    for (NSString *component in components) {
+        NSArray *keyValue = [component componentsSeparatedByString:@"="];
+        
+        dictionary[[keyValue[0] bdb_URLDecode]] = [keyValue[1] bdb_URLDecode];
+    }
+    
+    return [self initWithDictionary:dictionary];
+}
 
+- (NSString *)bdb_queryStringRepresentation
+{
+    NSMutableArray *paramArray = [NSMutableArray array];
     [self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         NSString *param = [NSString stringWithFormat:@"%@=%@", [key bdb_URLEncode], [obj bdb_URLEncode]];
         [paramArray addObject:param];
     }];
-
     return [paramArray componentsJoinedByString:@"&"];
 }
 

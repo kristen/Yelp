@@ -363,9 +363,6 @@ forHTTPHeaderField:(NSString *)field;
 
 #pragma mark -
 
-/**
- `AFJSONRequestSerializer` is a subclass of `AFHTTPRequestSerializer` that encodes parameters as JSON using `NSJSONSerialization`, setting the `Content-Type` of the encoded request to `application/json`.
- */
 @interface AFJSONRequestSerializer : AFHTTPRequestSerializer
 
 /**
@@ -382,11 +379,6 @@ forHTTPHeaderField:(NSString *)field;
 
 @end
 
-#pragma mark -
-
-/**
- `AFPropertyListRequestSerializer` is a subclass of `AFHTTPRequestSerializer` that encodes parameters as JSON using `NSPropertyListSerializer`, setting the `Content-Type` of the encoded request to `application/x-plist`.
- */
 @interface AFPropertyListRequestSerializer : AFHTTPRequestSerializer
 
 /**
@@ -412,8 +404,6 @@ forHTTPHeaderField:(NSString *)field;
 
 @end
 
-#pragma mark -
-
 ///----------------
 /// @name Constants
 ///----------------
@@ -437,7 +427,7 @@ extern NSString * const AFURLRequestSerializationErrorDomain;
 
  These keys may exist in the user info dictionary, in addition to those defined for NSError.
 
- - `NSString * const AFNetworkingOperationFailingURLRequestErrorKey`
+ - `NSString * const AFNetworkingOperationFailingURLResponseErrorKey`
 
  ### Constants
 
