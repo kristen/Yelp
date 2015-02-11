@@ -16,6 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+//        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+//        
+//        let navigationController = UINavigationController(rootViewController: ViewController())
+//        navigationController.navigationBar.barTintColor = UIColor.whiteColor()
+//        navigationController.navigationBar.backgroundColor = UIColor.redColor()
+//        navigationController.navigationBar.topItem?.title = "Yelp"
+//
+//        window?.rootViewController = navigationController
+//        window?.makeKeyAndVisible()
+        
         return true
     }
 

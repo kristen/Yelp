@@ -1,7 +1,16 @@
 //
-//  Use this file to import your target's public headers that you would like to expose to Swift.
+//  Yelp-Bridging-Header.h
+//  Yelp
+//
+//  Created by Kristen on 2/8/15.
+//  Copyright (c) 2015 Kristen Sundquist. All rights reserved.
 //
 
+#ifndef Yelp_RottenTomatoesSwift_Bridging_Header_h
+#define Yelp_RottenTomatoesSwift_Bridging_Header_h
 
-#import "NSDictionary+BDBOAuth1Manager.h"
-#import "BDBOAuth1RequestOperationManager.h"
+#import <UIImageView+AFNetworking.h>
+//#import <NSDictionary+BDBOAuth1Manager.h>
+#import <BDBOAuth1RequestOperationManager.h>
+
+#endif

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6750" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6735"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="92" id="KGk-i7-Jjw" customClass="BusinessCell" customModule="Yelp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="405" height="92"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bvd-bN-TW9">
+                        <rect key="frame" x="8" y="8" width="70" height="70"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="70" id="CiM-Gt-Pkq"/>
+                            <constraint firstAttribute="width" constant="70" id="hCZ-1l-4Ht"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="1. Grand Pu Bah" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADD-Vk-nm4">
+                        <rect key="frame" x="86" y="8" width="268" height="15"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="0.07 mi" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQ1-GM-Vcz">
+                        <rect key="frame" x="362" y="10" width="35" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$$" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipi-yz-iMO">
+                        <rect key="frame" x="385" y="26" width="12" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thai, Seafood, Salad" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SY8-L6-BNg">
+                        <rect key="frame" x="86" y="67" width="98" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0hE-jf-J56">
+                        <rect key="frame" x="86" y="26" width="84" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="84" id="EjX-Oe-J6e"/>
+                            <constraint firstAttribute="height" constant="17" id="vNg-Xw-Ce3"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="469 Reviews" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDp-hy-YW5">
+                        <rect key="frame" x="175" y="29" width="60" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88 Division St, Mission Bay" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeU-LO-euC">
+                        <rect key="frame" x="86" y="51" width="128" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="bvd-bN-TW9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="7aQ-dl-eiO"/>
+                    <constraint firstAttribute="trailing" secondItem="NQ1-GM-Vcz" secondAttribute="trailing" constant="8" id="Bhz-NG-1ZO"/>
+                    <constraint firstItem="ADD-Vk-nm4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="D2L-L6-dbM"/>
+                    <constraint firstItem="ipi-yz-iMO" firstAttribute="top" secondItem="NQ1-GM-Vcz" secondAttribute="bottom" constant="4" id="DVY-hc-pLH"/>
+                    <constraint firstItem="wDp-hy-YW5" firstAttribute="leading" secondItem="0hE-jf-J56" secondAttribute="trailing" constant="5" id="HRF-9J-Edr"/>
+                    <constraint firstItem="0hE-jf-J56" firstAttribute="leading" secondItem="bvd-bN-TW9" secondAttribute="trailing" constant="8" id="L6N-41-cPL"/>
+                    <constraint firstItem="SY8-L6-BNg" firstAttribute="top" secondItem="xeU-LO-euC" secondAttribute="bottom" constant="4" id="Nwn-f9-LS0"/>
+                    <constraint firstAttribute="trailing" secondItem="ipi-yz-iMO" secondAttribute="trailing" constant="8" id="VYR-wc-M4l"/>
+                    <constraint firstItem="SY8-L6-BNg" firstAttribute="leading" secondItem="bvd-bN-TW9" secondAttribute="trailing" constant="8" id="WIh-fV-gGo"/>
+                    <constraint firstItem="xeU-LO-euC" firstAttribute="top" secondItem="0hE-jf-J56" secondAttribute="bottom" constant="8" id="Wqn-Cl-4W8"/>
+                    <constraint firstItem="0hE-jf-J56" firstAttribute="centerY" secondItem="wDp-hy-YW5" secondAttribute="centerY" id="XBn-r4-hZr"/>
+                    <constraint firstItem="bvd-bN-TW9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Zzm-iV-EjB"/>
+                    <constraint firstItem="0hE-jf-J56" firstAttribute="top" secondItem="ADD-Vk-nm4" secondAttribute="bottom" constant="3.5" id="dww-RI-arB"/>
+                    <constraint firstItem="ADD-Vk-nm4" firstAttribute="leading" secondItem="bvd-bN-TW9" secondAttribute="trailing" constant="8" id="gz9-BM-rZN"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="bvd-bN-TW9" secondAttribute="bottom" constant="8" id="iCS-5B-512"/>
+                    <constraint firstItem="xeU-LO-euC" firstAttribute="leading" secondItem="bvd-bN-TW9" secondAttribute="trailing" constant="8" id="oYJ-sE-CY1"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="SY8-L6-BNg" secondAttribute="bottom" constant="8" id="oaV-DF-gR7"/>
+                    <constraint firstItem="NQ1-GM-Vcz" firstAttribute="leading" secondItem="ADD-Vk-nm4" secondAttribute="trailing" constant="8" id="t22-DF-hEW"/>
+                    <constraint firstItem="NQ1-GM-Vcz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="xUE-ul-Li2"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="addressLabel" destination="xeU-LO-euC" id="6qp-IX-Uz5"/>
+                <outlet property="categoryLabel" destination="SY8-L6-BNg" id="daX-fl-i7G"/>
+                <outlet property="distanceLabel" destination="NQ1-GM-Vcz" id="uiU-X7-ORd"/>
+                <outlet property="nameLabel" destination="ADD-Vk-nm4" id="Hst-o5-QuX"/>
+                <outlet property="numberOfReviewsLabel" destination="wDp-hy-YW5" id="1hd-cX-Fbg"/>
+                <outlet property="ratingImageView" destination="0hE-jf-J56" id="zp7-P6-m0v"/>
+                <outlet property="thumbImageView" destination="bvd-bN-TW9" id="OBH-MM-lsu"/>
+            </connections>
+            <point key="canvasLocation" x="418.5" y="712"/>
+        </tableViewCell>
+    </objects>
+</document>
