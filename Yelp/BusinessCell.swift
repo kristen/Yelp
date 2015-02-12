@@ -33,7 +33,8 @@ class BusinessCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setBusiness(business: Business) {
+    func setBusiness(business: Business, forIndex index: Int) {
+        
         if let imageURL = business.imageURL {
             let url = NSURL(string: imageURL)
             thumbImageView.setImageWithURLRequest(NSMutableURLRequest(URL: url!), placeholderImage: nil, success: { (request, response, image) -> Void in
@@ -47,7 +48,7 @@ class BusinessCell: UITableViewCell {
                 }, failure: nil)
         }
         
-        nameLabel.text = business.name
+        nameLabel.text = "\(index + 1). \(business.name)"
         let distance = NSString(format: "%.2f", business.distance)
         distanceLabel.text = "\(distance) mi"
         if let ratingImageURL = business.ratingImageUrl {

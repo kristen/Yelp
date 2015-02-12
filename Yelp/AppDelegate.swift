@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
 //        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-//        
+//        TODO: need to grab view from storyboard with identifier
 //        let navigationController = UINavigationController(rootViewController: ViewController())
 //        navigationController.navigationBar.barTintColor = UIColor.whiteColor()
 //        navigationController.navigationBar.backgroundColor = UIColor.redColor()
