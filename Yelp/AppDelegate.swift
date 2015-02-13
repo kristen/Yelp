@@ -17,15 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-//        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-//        TODO: need to grab view from storyboard with identifier
-//        let navigationController = UINavigationController(rootViewController: ViewController())
-//        navigationController.navigationBar.barTintColor = UIColor.whiteColor()
-//        navigationController.navigationBar.backgroundColor = UIColor.redColor()
-//        navigationController.navigationBar.topItem?.title = "Yelp"
-//
-//        window?.rootViewController = navigationController
-//        window?.makeKeyAndVisible()
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let navigationController = UINavigationController(rootViewController: storyboard.instantiateViewControllerWithIdentifier("MyViewController") as ViewController)
+        navigationController.navigationBar.barTintColor = UIColor.redColor()
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
         
         return true
     }

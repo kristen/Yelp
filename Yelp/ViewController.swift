@@ -26,13 +26,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         businessTableView.dataSource = self
         businessTableView.delegate = self
         businessTableView.registerNib(UINib(nibName: "BusinessCell", bundle: nil), forCellReuseIdentifier: "BusinessCell")
-        
+        businessTableView.estimatedRowHeight = 90
         businessTableView.rowHeight = UITableViewAutomaticDimension
         
         client = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
         
         client.searchWithTerm("Thai", success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
-            println(response)
             let json = JSON(response)
             
             if let businessessArray = json["businesses"].array {
