@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
     var client: YelpClient!
     
     @IBOutlet weak var businessTableView: UITableView!
@@ -17,6 +17,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let yelpToken = "Gdz-5v2nxZYXLhWYT5sKUmHYj3Lr3sg8"
     let yelpTokenSecret = "BxxPae9UJmonyoNUXqtKx0PlgQk"
     var businesses = [Business]()
+    var filteredBusinessess = [Business]()
+    var searchController: UISearchController!
+    var isFiltered = false
     
     
     override func viewDidLoad() {
@@ -28,6 +31,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         businessTableView.registerNib(UINib(nibName: "BusinessCell", bundle: nil), forCellReuseIdentifier: "BusinessCell")
         businessTableView.estimatedRowHeight = 90
         businessTableView.rowHeight = UITableViewAutomaticDimension
+        navigationItem.title = "Yelp"
+        
+        // Search Controller
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.sizeToFit()
+        businessTableView.tableHeaderView = searchController.searchBar
+        
+        definesPresentationContext = true
         
         client = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
         
@@ -50,18 +64,44 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //MARK - UITableViewDataSource
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.businesses.count
+        if isFiltered {
+            return filteredBusinessess.count
+        } else {
+            return self.businesses.count
+        }
     }
 
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("BusinessCell") as BusinessCell
         
-        cell.setBusiness(self.businesses[indexPath.row], forIndex: indexPath.row)
+        var business: Business
+        if isFiltered {
+            business = self.filteredBusinessess[indexPath.row]
+        } else {
+            business = self.businesses[indexPath.row]
+        }
+        
+        cell.setBusiness(business, forIndex: indexPath.row)
         
         return cell
         
         
+    }
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        let searchText = searchController.searchBar.text
+        
+        if (searchText as NSString).length == 0 {
+            isFiltered = false
+        } else {
+            isFiltered = true
+            filteredBusinessess = businesses.filter {( business: Business) -> Bool in
+                return business.name.rangeOfString(searchText, options: .CaseInsensitiveSearch) != nil
+            }
+        }
+        
+        businessTableView.reloadData()
     }
 }
 
