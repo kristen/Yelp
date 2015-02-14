@@ -10,6 +10,9 @@
 		4FCF942C3BB030906F187281 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9775AE0DA26B2048680AB89 /* libPods.a */; };
 		BB0238951A8B21330056EB4B /* BusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0238931A8B21330056EB4B /* BusinessCell.swift */; };
 		BB0238961A8B21330056EB4B /* BusinessCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB0238941A8B21330056EB4B /* BusinessCell.xib */; };
+		BB2E29D41A8DB55E00FB378D /* FiltersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2E29D31A8DB55E00FB378D /* FiltersTableViewController.swift */; };
+		BB2E29D91A8DC98300FB378D /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2E29D71A8DC98300FB378D /* SwitchCell.swift */; };
+		BB2E29DA1A8DC98300FB378D /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB2E29D81A8DC98300FB378D /* SwitchCell.xib */; };
 		BB3970731A887CC0009A9B1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3970721A887CC0009A9B1B /* AppDelegate.swift */; };
 		BB3970751A887CC0009A9B1B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3970741A887CC0009A9B1B /* ViewController.swift */; };
 		BB3970781A887CC0009A9B1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB3970761A887CC0009A9B1B /* Main.storyboard */; };
@@ -36,6 +39,9 @@
 		792EE075F77A5509F836D67F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		BB0238931A8B21330056EB4B /* BusinessCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessCell.swift; sourceTree = "<group>"; };
 		BB0238941A8B21330056EB4B /* BusinessCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessCell.xib; sourceTree = "<group>"; };
+		BB2E29D31A8DB55E00FB378D /* FiltersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersTableViewController.swift; sourceTree = "<group>"; };
+		BB2E29D71A8DC98300FB378D /* SwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
+		BB2E29D81A8DC98300FB378D /* SwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
 		BB39706D1A887CC0009A9B1B /* Yelp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yelp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB3970711A887CC0009A9B1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB3970721A887CC0009A9B1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -167,6 +173,8 @@
 			children = (
 				BB0238931A8B21330056EB4B /* BusinessCell.swift */,
 				BB0238941A8B21330056EB4B /* BusinessCell.xib */,
+				BB2E29D71A8DC98300FB378D /* SwitchCell.swift */,
+				BB2E29D81A8DC98300FB378D /* SwitchCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -183,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				BB3970741A887CC0009A9B1B /* ViewController.swift */,
+				BB2E29D31A8DB55E00FB378D /* FiltersTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -273,6 +282,7 @@
 				BB0238961A8B21330056EB4B /* BusinessCell.xib in Resources */,
 				BB39707D1A887CC0009A9B1B /* LaunchScreen.xib in Resources */,
 				BB39707A1A887CC0009A9B1B /* Images.xcassets in Resources */,
+				BB2E29DA1A8DC98300FB378D /* SwitchCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,7 +334,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB3970751A887CC0009A9B1B /* ViewController.swift in Sources */,
+				BB2E29D91A8DC98300FB378D /* SwitchCell.swift in Sources */,
 				BB4219491A89DFF000F63F41 /* Business.swift in Sources */,
+				BB2E29D41A8DB55E00FB378D /* FiltersTableViewController.swift in Sources */,
 				BBE2FCE51A88987B00E968A1 /* YelpClient.swift in Sources */,
 				BB3A4F431A8B0A10001A07CB /* SwiftyJSON.swift in Sources */,
 				BB3970731A887CC0009A9B1B /* AppDelegate.swift in Sources */,

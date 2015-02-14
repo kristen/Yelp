@@ -37,5 +37,38 @@
             </objects>
             <point key="canvasLocation" x="275" y="425"/>
         </scene>
+        <!--Filters Table View Controller-->
+        <scene sceneID="P64-Xt-STL">
+            <objects>
+                <viewController storyboardIdentifier="FiltersTableViewController" id="fr3-AO-o7j" customClass="FiltersTableViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2X0-55-U6l"/>
+                        <viewControllerLayoutGuide type="bottom" id="aTD-3X-BeT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IFx-kC-91m">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lH2-RL-Tgc">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="lH2-RL-Tgc" secondAttribute="trailing" id="0xP-oH-QLL"/>
+                            <constraint firstItem="lH2-RL-Tgc" firstAttribute="leading" secondItem="IFx-kC-91m" secondAttribute="leading" id="50C-oV-Ouq"/>
+                            <constraint firstItem="aTD-3X-BeT" firstAttribute="top" secondItem="lH2-RL-Tgc" secondAttribute="bottom" id="5b2-Ia-Oun"/>
+                            <constraint firstItem="lH2-RL-Tgc" firstAttribute="top" secondItem="IFx-kC-91m" secondAttribute="top" id="Idj-xf-rR3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="filtersTableView" destination="lH2-RL-Tgc" id="gfH-fO-uY9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ty0-Bh-Ftn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="275" y="1109"/>
+        </scene>
     </scenes>
 </document>

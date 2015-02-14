@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, FiltersViewControllerDelegate {
     var client: YelpClient!
     
     @IBOutlet weak var businessTableView: UITableView!
@@ -31,7 +31,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         businessTableView.registerNib(UINib(nibName: "BusinessCell", bundle: nil), forCellReuseIdentifier: "BusinessCell")
         businessTableView.estimatedRowHeight = 90
         businessTableView.rowHeight = UITableViewAutomaticDimension
+
+        
         navigationItem.title = "Yelp"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Filter", style: .Plain, target: self, action: "onFilterButton")
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
         
         // Search Controller
         searchController = UISearchController(searchResultsController: nil)
@@ -45,7 +49,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         client = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
         
-        client.searchWithTerm("Thai", success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+        fetchBusinessesWithQuery("Restaurants")
+    }
+    
+    func fetchBusinessesWithQuery(query: String, params: [String: String] = [:]) {
+        client.searchWithTerm(query, additionalParams: params, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
             let json = JSON(response)
             
             if let businessessArray = json["businesses"].array {
@@ -59,6 +67,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
                 println(error.description)
         }
+
     }
     
     //MARK - UITableViewDataSource
@@ -102,6 +111,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         businessTableView.reloadData()
+    }
+    
+    func onFilterButton() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let filtersViewController = storyboard.instantiateViewControllerWithIdentifier("FiltersTableViewController") as FiltersTableViewController
+        filtersViewController.delegate = self
+        let nvc = UINavigationController(rootViewController: filtersViewController)
+        nvc.navigationBar.barTintColor = UIColor.redColor()
+        nvc.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        presentViewController(nvc, animated: true, completion: nil)
+        
+    }
+    
+    func filtersViewController(filtersViewController: FiltersTableViewController, didChangeFilters filters: [String : String]) {
+        println("Fire new network event: \(filters)")
+        fetchBusinessesWithQuery("Restaurants", params: filters)
     }
 }
 
