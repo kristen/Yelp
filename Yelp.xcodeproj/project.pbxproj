@@ -21,6 +21,8 @@
 		BB3970891A887CC0009A9B1B /* YelpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3970881A887CC0009A9B1B /* YelpTests.swift */; };
 		BB3A4F431A8B0A10001A07CB /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3A4F421A8B0A10001A07CB /* SwiftyJSON.swift */; };
 		BB4219491A89DFF000F63F41 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4219481A89DFF000F63F41 /* Business.swift */; };
+		BB98B09A1A8F258E00B43688 /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB98B0981A8F258E00B43688 /* LabelCell.swift */; };
+		BB98B09B1A8F258E00B43688 /* LabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB98B0991A8F258E00B43688 /* LabelCell.xib */; };
 		BBE2FCE51A88987B00E968A1 /* YelpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE2FCE41A88987B00E968A1 /* YelpClient.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +56,8 @@
 		BB3970881A887CC0009A9B1B /* YelpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpTests.swift; sourceTree = "<group>"; };
 		BB3A4F421A8B0A10001A07CB /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		BB4219481A89DFF000F63F41 /* Business.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
+		BB98B0981A8F258E00B43688 /* LabelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelCell.swift; sourceTree = "<group>"; };
+		BB98B0991A8F258E00B43688 /* LabelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelCell.xib; sourceTree = "<group>"; };
 		BBE2FCE41A88987B00E968A1 /* YelpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpClient.swift; sourceTree = "<group>"; };
 		BBFC33791A887FBF008B613F /* Yelp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Yelp-Bridging-Header.h"; sourceTree = "<group>"; };
 		BBFC337C1A8881B8008B613F /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/build/Debug-iphoneos/Pods/SwiftyJSON.framework"; sourceTree = "<group>"; };
@@ -175,6 +179,8 @@
 				BB0238941A8B21330056EB4B /* BusinessCell.xib */,
 				BB2E29D71A8DC98300FB378D /* SwitchCell.swift */,
 				BB2E29D81A8DC98300FB378D /* SwitchCell.xib */,
+				BB98B0981A8F258E00B43688 /* LabelCell.swift */,
+				BB98B0991A8F258E00B43688 /* LabelCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -278,6 +284,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB98B09B1A8F258E00B43688 /* LabelCell.xib in Resources */,
 				BB3970781A887CC0009A9B1B /* Main.storyboard in Resources */,
 				BB0238961A8B21330056EB4B /* BusinessCell.xib in Resources */,
 				BB39707D1A887CC0009A9B1B /* LaunchScreen.xib in Resources */,
@@ -340,6 +347,7 @@
 				BBE2FCE51A88987B00E968A1 /* YelpClient.swift in Sources */,
 				BB3A4F431A8B0A10001A07CB /* SwiftyJSON.swift in Sources */,
 				BB3970731A887CC0009A9B1B /* AppDelegate.swift in Sources */,
+				BB98B09A1A8F258E00B43688 /* LabelCell.swift in Sources */,
 				BB0238951A8B21330056EB4B /* BusinessCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
