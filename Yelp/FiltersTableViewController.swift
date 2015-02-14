@@ -18,17 +18,27 @@ class FiltersTableViewController: UIViewController, UITableViewDataSource, UITab
     weak var delegate: FiltersViewControllerDelegate?
     var categories: [[String:String]]!
     var filtersBySection: [(String, [String])]!
+    let radius = ["40000", "200", "600", "1609", "8046"]
     
     enum Filters: Int {
         case MostPopular = 0, Distance, SortBy, Categories
     }
     
-    var selectedFiltersIndex = [0,0,0,0]
+    var selectedFiltersIndex = [0,0,0]
 
     var selectedCategories = NSMutableSet()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var defaults = NSUserDefaults.standardUserDefaults()
+        selectedFiltersIndex[Filters.MostPopular.rawValue] = defaults.integerForKey("Filters_MostPopular")
+        selectedFiltersIndex[Filters.Distance.rawValue] = defaults.integerForKey("Filters_Distance")
+        selectedFiltersIndex[Filters.SortBy.rawValue] = defaults.integerForKey("Filters_SortBy")
+        
+        if let defaultCategories = defaults.arrayForKey("Filters_Categories") {
+            selectedCategories = NSMutableSet(array: defaultCategories)
+        }
         
         categories = getCategories()
         let categoryNames = categories.map { $0["name"]! }
@@ -71,14 +81,28 @@ class FiltersTableViewController: UIViewController, UITableViewDataSource, UITab
 
         filters.updateValue(categoryFilter, forKey: "category_filter")
         
-        filters.updateValue(["false", "true"][selectedFiltersIndex[Filters.MostPopular.rawValue]], forKey: "deals_filter")
+        let dealValue = selectedFiltersIndex[Filters.MostPopular.rawValue]
+        filters.updateValue(["false", "true"][dealValue], forKey: "deals_filter")
         
-        let radius = ["40000", "200", "600", "1609", "8046"]
         
-        filters.updateValue(radius[selectedFiltersIndex[Filters.Distance.rawValue]], forKey: "radius_filter")
+        let radiusValue = selectedFiltersIndex[Filters.Distance.rawValue]
+        filters.updateValue(radius[radiusValue], forKey: "radius_filter")
         
-        filters.updateValue(String(selectedFiltersIndex[Filters.SortBy.rawValue]), forKey: "sort_filter")
+        let sortValue = selectedFiltersIndex[Filters.SortBy.rawValue]
+        filters.updateValue(String(sortValue), forKey: "sort_filter")
 
+        // save into nsuserdefaults
+        
+        var defaults = NSUserDefaults.standardUserDefaults()
+        
+        defaults.setInteger(dealValue, forKey: "Filters_MostPopular")
+        defaults.setInteger(radiusValue, forKey: "Filters_Distance")
+        defaults.setInteger(sortValue, forKey: "Filters_SortBy")
+        defaults.setObject(selectedCategories.allObjects as NSArray, forKey: "Filters_Categories")
+        
+        defaults.synchronize()
+
+        
         return filters
     }
 
