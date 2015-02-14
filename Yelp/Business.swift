@@ -16,6 +16,10 @@ class Business : NSObject {
     let imageURL: String?
     let ratingImageUrl: String?
     let distance: Double
+    let displayPhone: String?
+    let phoneNumber: Int?
+    let recomendedReviewImageUrl: String?
+    let recomendedReviewText: String?
     
     init(json: JSON) {
         var categoryNames = [String]()
@@ -39,8 +43,6 @@ class Business : NSObject {
         
         if let imageURL = json["image_url"].string {
             self.imageURL = imageURL
-        } else {
-            self.imageURL = nil
         }
         
         if let street = json["location"]["address"][0].string {
@@ -61,8 +63,6 @@ class Business : NSObject {
         
         if let ratingImageUrl = json["rating_img_url"].string {
             self.ratingImageUrl = ratingImageUrl
-        } else {
-            self.ratingImageUrl = nil
         }
         
         let milesPerMeter = 0.0006213171
@@ -70,6 +70,23 @@ class Business : NSObject {
             self.distance = Double(distance) * milesPerMeter
         } else {
             self.distance = 0
+        }
+        
+        if let displayPhone = json["display_phone"].string {
+            self.displayPhone = displayPhone
+        }
+        
+        // http://stackoverflow.com/questions/25117321/iphone-call-from-app-in-swift-xcode-6
+        if let phoneNumber = json["phone_number"].int {
+            self.phoneNumber = phoneNumber
+        }
+        
+        if let recomendedReviewImageUrl = json["snippet_image_url"].string {
+            self.recomendedReviewImageUrl = recomendedReviewImageUrl
+        }
+        
+        if let recomendedReviewText = json["snippet_text"].string {
+            self.recomendedReviewText = recomendedReviewText
         }
     }
     

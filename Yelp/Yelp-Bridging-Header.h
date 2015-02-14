@@ -10,7 +10,7 @@
 #define Yelp_RottenTomatoesSwift_Bridging_Header_h
 
 #import <UIImageView+AFNetworking.h>
-//#import <NSDictionary+BDBOAuth1Manager.h>
 #import <BDBOAuth1RequestOperationManager.h>
+#import <MBProgressHUD.h>
 
 #endif

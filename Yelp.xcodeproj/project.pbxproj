@@ -23,6 +23,7 @@
 		BB4219491A89DFF000F63F41 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4219481A89DFF000F63F41 /* Business.swift */; };
 		BB98B09A1A8F258E00B43688 /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB98B0981A8F258E00B43688 /* LabelCell.swift */; };
 		BB98B09B1A8F258E00B43688 /* LabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB98B0991A8F258E00B43688 /* LabelCell.xib */; };
+		BB98B0A11A8FD02D00B43688 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB98B0A01A8FD02D00B43688 /* DetailViewController.swift */; };
 		BBE2FCE51A88987B00E968A1 /* YelpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE2FCE41A88987B00E968A1 /* YelpClient.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		BB4219481A89DFF000F63F41 /* Business.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
 		BB98B0981A8F258E00B43688 /* LabelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelCell.swift; sourceTree = "<group>"; };
 		BB98B0991A8F258E00B43688 /* LabelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelCell.xib; sourceTree = "<group>"; };
+		BB98B0A01A8FD02D00B43688 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		BBE2FCE41A88987B00E968A1 /* YelpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpClient.swift; sourceTree = "<group>"; };
 		BBFC33791A887FBF008B613F /* Yelp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Yelp-Bridging-Header.h"; sourceTree = "<group>"; };
 		BBFC337C1A8881B8008B613F /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/build/Debug-iphoneos/Pods/SwiftyJSON.framework"; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				BB3970741A887CC0009A9B1B /* ViewController.swift */,
+				BB98B0A01A8FD02D00B43688 /* DetailViewController.swift */,
 				BB2E29D31A8DB55E00FB378D /* FiltersTableViewController.swift */,
 			);
 			name = ViewControllers;
@@ -347,6 +350,7 @@
 				BBE2FCE51A88987B00E968A1 /* YelpClient.swift in Sources */,
 				BB3A4F431A8B0A10001A07CB /* SwiftyJSON.swift in Sources */,
 				BB3970731A887CC0009A9B1B /* AppDelegate.swift in Sources */,
+				BB98B0A11A8FD02D00B43688 /* DetailViewController.swift in Sources */,
 				BB98B09A1A8F258E00B43688 /* LabelCell.swift in Sources */,
 				BB0238951A8B21330056EB4B /* BusinessCell.swift in Sources */,
 			);

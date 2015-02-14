@@ -25,6 +25,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        MBProgressHUD.showHUDAddedTo(view, animated: true)
         
         businessTableView.dataSource = self
         businessTableView.delegate = self
@@ -33,7 +34,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         businessTableView.rowHeight = UITableViewAutomaticDimension
 
         
-        navigationItem.title = "Yelp"
+        navigationItem.title = "Search"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Filter", style: .Plain, target: self, action: "onFilterButton")
         navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
         
@@ -63,6 +64,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
             
             self.businessTableView.reloadData()
+            MBProgressHUD.hideHUDForView(self.view, animated: true)
+            
+            println(response)
             
             }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
                 println(error.description)
@@ -94,6 +98,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.setBusiness(business, forIndex: indexPath.row)
         
         return cell
+        
+        
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // segue to detailviewcontroller
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let detailsViewController = storyboard.instantiateViewControllerWithIdentifier("DetailViewController") as DetailViewController
+
+        var business: Business
+        if isFiltered {
+            business = self.filteredBusinessess[indexPath.row]
+        } else {
+            business = self.businesses[indexPath.row]
+        }
+
+        detailsViewController.business = business
+        
+        navigationController?.pushViewController(detailsViewController, animated: true)
         
         
     }
