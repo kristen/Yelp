@@ -22,11 +22,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var filteredBusinessess = [Business]()
     var searchController: UISearchController!
     var isFiltered = false
+    let businessLimit = 20
+    var scrollOffset = 20
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        MBProgressHUD.showHUDAddedTo(view, animated: true)
         
         businessTableView.dataSource = self
         businessTableView.delegate = self
@@ -60,8 +61,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func fetchBusinessesWithQuery(query: String, params: [String: String] = [:]) {
+        MBProgressHUD.showHUDAddedTo(view, animated: true)
         client.searchWithTerm(query, additionalParams: params, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
             let json = JSON(response)
+            self.scrollOffset = self.businessLimit
             
             if let businessessArray = json["businesses"].array {
                 self.businesses = Business.businessWithDictionaries(businessessArray)
@@ -71,6 +74,25 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             self.businessTableView.reloadData()
             MBProgressHUD.hideHUDForView(self.view, animated: true)
+            
+            }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println(error.description)
+        }
+
+    }
+    
+    func fetchInfiniteScrollBusinessesWithQuery(query: String, params: [String: String] = [:]) {
+
+        client.searchWithTerm(query, additionalParams: params, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            let json = JSON(response)
+            
+            if let businessessArray = json["businesses"].array {
+                self.businesses.extend(Business.businessWithDictionaries(businessessArray))
+            }
+            
+            self.businessTableView.reloadData()
+
+            self.scrollOffset += 20
             
             }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
                 println(error.description)
@@ -102,8 +124,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.setBusiness(business, forIndex: indexPath.row)
         
         return cell
-        
-        
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -122,6 +142,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         detailsViewController.business = business
         
         navigationController?.pushViewController(detailsViewController, animated: true)
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        let actualPosition = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height - businessTableView.frame.height
+        if actualPosition >= contentHeight {
+
+            fetchInfiniteScrollBusinessesWithQuery("Restaurants", params: ["limit" : "\(self.businessLimit)", "offset": "\(self.scrollOffset)"])
+        }
     }
     
     func updateMapViewAnnotations() {
