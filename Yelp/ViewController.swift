@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, UISearchResultsUpdating, FiltersViewControllerDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, UISearchBarDelegate, FiltersViewControllerDelegate {
     var client: YelpClient!
     
     @IBOutlet weak var businessMapView: MKMapView! // make strong?
@@ -18,12 +18,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let yelpConsumerSecret = "9ghoeZyZXYUR0GDnHnEdfqoqLkk"
     let yelpToken = "Gdz-5v2nxZYXLhWYT5sKUmHYj3Lr3sg8"
     let yelpTokenSecret = "BxxPae9UJmonyoNUXqtKx0PlgQk"
+
     var businesses = [Business]()
-    var filteredBusinessess = [Business]()
     var searchController: UISearchController!
-    var isFiltered = false
     let businessLimit = 20
     var scrollOffset = 20
+    var searchTerm = "Restaurant"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,11 +45,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         // Search Controller
         searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
         
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.sizeToFit()
-
         
         businessTableView.tableHeaderView = searchController.searchBar
         
@@ -57,7 +56,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         client = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
         
-        fetchBusinessesWithQuery("Restaurants")
+        fetchBusinessesWithQuery(searchTerm, params: ["limit": "20"])
     }
     
     func fetchBusinessesWithQuery(query: String, params: [String: String] = [:]) {
@@ -103,25 +102,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //MARK - UITableViewDataSource
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isFiltered {
-            return filteredBusinessess.count
-        } else {
-            return self.businesses.count
-        }
-    }
+        return self.businesses.count
 
+    }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("BusinessCell") as BusinessCell
         
-        var business: Business
-        if isFiltered {
-            business = self.filteredBusinessess[indexPath.row]
-        } else {
-            business = self.businesses[indexPath.row]
-        }
-        
-        cell.setBusiness(business, forIndex: indexPath.row)
+        cell.setBusiness(businesses[indexPath.row], forIndex: indexPath.row)
         
         return cell
     }
@@ -132,14 +120,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let detailsViewController = storyboard.instantiateViewControllerWithIdentifier("DetailViewController") as DetailViewController
 
-        var business: Business
-        if isFiltered {
-            business = self.filteredBusinessess[indexPath.row]
-        } else {
-            business = self.businesses[indexPath.row]
-        }
-
-        detailsViewController.business = business
+        detailsViewController.business = self.businesses[indexPath.row]
         
         navigationController?.pushViewController(detailsViewController, animated: true)
     }
@@ -150,7 +131,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let contentHeight = scrollView.contentSize.height - businessTableView.frame.height
         if actualPosition >= contentHeight {
 
-            fetchInfiniteScrollBusinessesWithQuery("Restaurants", params: ["limit" : "\(self.businessLimit)", "offset": "\(self.scrollOffset)"])
+            fetchInfiniteScrollBusinessesWithQuery(searchTerm, params: ["limit" : "\(self.businessLimit)", "offset": "\(self.scrollOffset)"])
         }
     }
     
@@ -188,21 +169,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         navigationController?.pushViewController(detailsViewController, animated: true)
     }
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        let searchText = searchController.searchBar.text
-        
-        if (searchText as NSString).length == 0 {
-            isFiltered = false
-        } else {
-            isFiltered = true
-            filteredBusinessess = businesses.filter {( business: Business) -> Bool in
-                return business.name.rangeOfString(searchText, options: .CaseInsensitiveSearch) != nil
-            }
-        }
-        
-        businessTableView.reloadData()
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchTerm = searchController.searchBar.text
+        fetchBusinessesWithQuery(searchTerm)
     }
-    
     func onFilterButton() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let filtersViewController = storyboard.instantiateViewControllerWithIdentifier("FiltersTableViewController") as FiltersTableViewController
@@ -227,7 +197,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func filtersViewController(filtersViewController: FiltersTableViewController, didChangeFilters filters: [String : String]) {
         println("Fire new network event: \(filters)")
-        fetchBusinessesWithQuery("Restaurants", params: filters)
+        fetchBusinessesWithQuery(searchTerm, params: filters)
     }
 }
 
