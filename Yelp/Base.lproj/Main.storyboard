@@ -16,8 +16,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="nQg-No-Bud">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                            </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="uFU-C4-if5">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
@@ -26,10 +29,23 @@
                             <constraint firstItem="uFU-C4-if5" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="2a2-qx-yMW"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="uFU-C4-if5" secondAttribute="bottom" id="9K4-eY-FOw"/>
                             <constraint firstAttribute="trailing" secondItem="uFU-C4-if5" secondAttribute="trailing" id="QAq-Bm-sEf"/>
+                            <constraint firstItem="uFU-C4-if5" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="VTM-zc-U19"/>
+                            <constraint firstAttribute="trailing" secondItem="nQg-No-Bud" secondAttribute="trailing" id="fuq-mW-XGF"/>
+                            <constraint firstItem="nQg-No-Bud" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="nrF-Gj-q8x"/>
+                            <constraint firstItem="nQg-No-Bud" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="rBk-G6-zeS"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="nQg-No-Bud" secondAttribute="bottom" id="t0Q-8d-fCm"/>
+                            <constraint firstItem="nQg-No-Bud" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="tYe-KJ-Juc"/>
                             <constraint firstItem="uFU-C4-if5" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="uKX-BI-hZH"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="2a2-qx-yMW"/>
+                                <exclude reference="nrF-Gj-q8x"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
+                        <outlet property="businessMapView" destination="nQg-No-Bud" id="U7I-Rq-4My"/>
                         <outlet property="businessTableView" destination="uFU-C4-if5" id="BMU-MU-7cV"/>
                     </connections>
                 </viewController>

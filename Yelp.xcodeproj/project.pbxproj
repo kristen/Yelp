@@ -24,6 +24,7 @@
 		BB98B09A1A8F258E00B43688 /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB98B0981A8F258E00B43688 /* LabelCell.swift */; };
 		BB98B09B1A8F258E00B43688 /* LabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB98B0991A8F258E00B43688 /* LabelCell.xib */; };
 		BB98B0A11A8FD02D00B43688 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB98B0A01A8FD02D00B43688 /* DetailViewController.swift */; };
+		BB98B0A51A9101C200B43688 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB98B0A41A9101C200B43688 /* MapKit.framework */; };
 		BBE2FCE51A88987B00E968A1 /* YelpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE2FCE41A88987B00E968A1 /* YelpClient.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		BB98B0981A8F258E00B43688 /* LabelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelCell.swift; sourceTree = "<group>"; };
 		BB98B0991A8F258E00B43688 /* LabelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelCell.xib; sourceTree = "<group>"; };
 		BB98B0A01A8FD02D00B43688 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		BB98B0A41A9101C200B43688 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		BBE2FCE41A88987B00E968A1 /* YelpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpClient.swift; sourceTree = "<group>"; };
 		BBFC33791A887FBF008B613F /* Yelp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Yelp-Bridging-Header.h"; sourceTree = "<group>"; };
 		BBFC337C1A8881B8008B613F /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/build/Debug-iphoneos/Pods/SwiftyJSON.framework"; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB98B0A51A9101C200B43688 /* MapKit.framework in Frameworks */,
 				4FCF942C3BB030906F187281 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,6 +91,7 @@
 		3EEA8D7150E40064F930FDC1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BB98B0A41A9101C200B43688 /* MapKit.framework */,
 				BBFC337C1A8881B8008B613F /* SwiftyJSON.framework */,
 				F9775AE0DA26B2048680AB89 /* libPods.a */,
 			);

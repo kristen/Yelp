@@ -12,6 +12,8 @@ class Business : NSObject {
     let categories: String
     let name: String
     let address: String
+    let latitude: Double?
+    let longitude: Double?
     let numberOfReviews: Int
     let imageURL: String?
     let ratingImageUrl: String?
@@ -53,6 +55,13 @@ class Business : NSObject {
             }
         } else {
             self.address = ""
+        }
+        
+        if let latitude = json["location"]["coordinate"]["latitude"].string {
+            self.latitude = NSString(string: latitude).doubleValue
+        }
+        if let longitude = json["location"]["coordinate"]["longitude"].string {
+            self.longitude = NSString(string: longitude).doubleValue
         }
         
         if let numberOfReviews = json["review_count"].int {

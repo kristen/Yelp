@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import MapKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, FiltersViewControllerDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, UISearchResultsUpdating, FiltersViewControllerDelegate {
     var client: YelpClient!
     
-    @IBOutlet weak var businessTableView: UITableView!
+    @IBOutlet weak var businessMapView: MKMapView! // make strong?
+    @IBOutlet weak var businessTableView: UITableView! // make strong?
     let yelpConsumerKey = "kRyJ7J0tzSytiDxknPNS3Q"
     let yelpConsumerSecret = "9ghoeZyZXYUR0GDnHnEdfqoqLkk"
     let yelpToken = "Gdz-5v2nxZYXLhWYT5sKUmHYj3Lr3sg8"
@@ -36,7 +38,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         navigationItem.title = "Search"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Filter", style: .Plain, target: self, action: "onFilterButton")
-        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Map", style: .Plain, target: self, action: "onMapButton")
         
         
         
@@ -146,6 +148,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let nvc = UINavigationController(rootViewController: filtersViewController)
         presentViewController(nvc, animated: true, completion: nil)
         
+    }
+    
+    func onListButton() {
+        UIView.transitionFromView(businessMapView, toView: businessTableView, duration: 1.0, options: UIViewAnimationOptions.TransitionFlipFromLeft | UIViewAnimationOptions.ShowHideTransitionViews, completion: nil)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Map", style: .Plain, target: self, action: "onMapButton")
+
+    }
+    
+    func onMapButton() {
+        UIView.transitionFromView(businessTableView, toView: businessMapView, duration: 1.0, options: UIViewAnimationOptions.TransitionFlipFromLeft | UIViewAnimationOptions.ShowHideTransitionViews, completion: nil)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "List", style: .Plain, target: self, action: "onListButton")
     }
     
     func filtersViewController(filtersViewController: FiltersTableViewController, didChangeFilters filters: [String : String]) {
