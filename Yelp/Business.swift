@@ -5,9 +5,9 @@
 //  Created by Kristen on 2/9/15.
 //  Copyright (c) 2015 Kristen Sundquist. All rights reserved.
 //
+import MapKit
 
-
-class Business : NSObject {
+class Business : NSObject, MKAnnotation {
     
     let categories: String
     let name: String
@@ -22,6 +22,18 @@ class Business : NSObject {
     let phoneNumber: Int?
     let recomendedReviewImageUrl: String?
     let recomendedReviewText: String?
+    
+    var coordinate: CLLocationCoordinate2D {
+        get {
+            return CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
+        }
+    }
+
+    var title: String {
+        get {
+            return name
+        }
+    }
     
     init(json: JSON) {
         var categoryNames = [String]()
@@ -57,11 +69,11 @@ class Business : NSObject {
             self.address = ""
         }
         
-        if let latitude = json["location"]["coordinate"]["latitude"].string {
-            self.latitude = NSString(string: latitude).doubleValue
+        if let latitude = json["location"]["coordinate"]["latitude"].number {
+            self.latitude = latitude.doubleValue
         }
-        if let longitude = json["location"]["coordinate"]["longitude"].string {
-            self.longitude = NSString(string: longitude).doubleValue
+        if let longitude = json["location"]["coordinate"]["longitude"].number {
+            self.longitude = longitude.doubleValue
         }
         
         if let numberOfReviews = json["review_count"].int {

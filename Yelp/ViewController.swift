@@ -23,7 +23,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var searchController: UISearchController!
     var isFiltered = false
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -31,6 +30,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         businessTableView.dataSource = self
         businessTableView.delegate = self
+        businessMapView.delegate = self
         businessTableView.registerNib(UINib(nibName: "BusinessCell", bundle: nil), forCellReuseIdentifier: "BusinessCell")
         businessTableView.estimatedRowHeight = 90
         businessTableView.rowHeight = UITableViewAutomaticDimension
@@ -122,8 +122,40 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         detailsViewController.business = business
         
         navigationController?.pushViewController(detailsViewController, animated: true)
+    }
+    
+    func updateMapViewAnnotations() {
+        businessMapView.removeAnnotations(businessMapView.annotations)
+        businessMapView.addAnnotations(businesses)
+        businessMapView.showAnnotations(businesses, animated: true)
+    }
+    
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        var view = mapView.dequeueReusableAnnotationViewWithIdentifier("MapViewAnnotation")
         
+        if view == nil {
+            view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "MapViewAnnotation")
+            view.canShowCallout = true
+            
+            let imageView = UIImageView(frame: CGRectMake(0, 0, 46, 46))
+            imageView.setImageWithURL(NSURL(string:(annotation as Business).imageURL!))
+            view.leftCalloutAccessoryView = imageView
+            let disclosureButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
+            view.rightCalloutAccessoryView = disclosureButton
+        }
         
+        view.annotation = annotation
+        
+        return view
+    }
+    
+    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let detailsViewController = storyboard.instantiateViewControllerWithIdentifier("DetailViewController") as DetailViewController
+        detailsViewController.business = view.annotation as Business
+        
+        navigationController?.pushViewController(detailsViewController, animated: true)
     }
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
@@ -159,7 +191,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func onMapButton() {
         UIView.transitionFromView(businessTableView, toView: businessMapView, duration: 1.0, options: UIViewAnimationOptions.TransitionFlipFromLeft | UIViewAnimationOptions.ShowHideTransitionViews, completion: nil)
-        
+        updateMapViewAnnotations()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "List", style: .Plain, target: self, action: "onListButton")
     }
     
