@@ -12,6 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let yelpRed = UIColor(red: 202/255.0, green: 0.0, blue: 0.0, alpha: 1.0)
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -20,10 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().barTintColor = yelpRed
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+        UISearchBar.appearance().tintColor = UIColor.whiteColor()
+        UISearchBar.appearance().barTintColor = yelpRed
         
         let navigationController = UINavigationController(rootViewController: storyboard.instantiateViewControllerWithIdentifier("MyViewController") as ViewController)
-        navigationController.navigationBar.barTintColor = UIColor.redColor()
-        navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
 
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()

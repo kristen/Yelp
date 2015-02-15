@@ -59,8 +59,6 @@ class FiltersTableViewController: UIViewController, UITableViewDataSource, UITab
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Search", style: .Plain, target: self, action: "onApplyButton")
     
         navigationItem.title = "Filters"
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
         
         filtersTableView.reloadData()
     }

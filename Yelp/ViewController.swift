@@ -33,10 +33,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         businessTableView.estimatedRowHeight = 90
         businessTableView.rowHeight = UITableViewAutomaticDimension
 
-        
+
         navigationItem.title = "Search"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Filter", style: .Plain, target: self, action: "onFilterButton")
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
+        
+        
+        
         
         // Search Controller
         searchController = UISearchController(searchResultsController: nil)
@@ -44,6 +46,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.sizeToFit()
+
+        
         businessTableView.tableHeaderView = searchController.searchBar
         
         definesPresentationContext = true
@@ -65,8 +69,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             self.businessTableView.reloadData()
             MBProgressHUD.hideHUDForView(self.view, animated: true)
-            
-            println(response)
             
             }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
                 println(error.description)
@@ -142,8 +144,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let filtersViewController = storyboard.instantiateViewControllerWithIdentifier("FiltersTableViewController") as FiltersTableViewController
         filtersViewController.delegate = self
         let nvc = UINavigationController(rootViewController: filtersViewController)
-        nvc.navigationBar.barTintColor = UIColor.redColor()
-        nvc.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         presentViewController(nvc, animated: true, completion: nil)
         
     }

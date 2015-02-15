@@ -29,8 +29,11 @@ class DetailViewController: UIViewController {
         
         
         navigationItem.title = "Yelp"
-        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         updateUI()
+        
+        reviewImageView.layer.cornerRadius = 3
+        reviewImageView.clipsToBounds = true
+
     }
 
     func updateUI() {
