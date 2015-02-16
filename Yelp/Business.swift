@@ -12,6 +12,7 @@ class Business : NSObject, MKAnnotation {
     let categories: String
     let name: String
     let address: String
+    let displayAddress: String
     let latitude: Double?
     let longitude: Double?
     let numberOfReviews: Int
@@ -59,21 +60,39 @@ class Business : NSObject, MKAnnotation {
             self.imageURL = imageURL
         }
         
-        if let street = json["location"]["address"][0].string {
-            if let neighborhood = json["location"]["neighborhoods"][0].string {
-                self.address = "\(street), \(neighborhood)"
-            } else {
-                self.address = street
+        self.displayAddress = ""
+        self.address = ""
+        if let location = json["location"].dictionary {
+            if let street = location["address"]?[0].string {
+                if let neighborhood = location["neighborhoods"]?[0].string {
+                    self.address = "\(street), \(neighborhood)"
+                } else {
+                    self.address = street
+                }
+                if let city = location["city"]?.string {
+                    if let state = location["state_code"]?.string {
+                        if let zipCode = location["postal_code"]?.string {
+                            self.displayAddress = "\(street), \(city) \(state) \(zipCode)"
+                        } else {
+                            self.displayAddress = "\(street), \(city) \(state)"
+                        }
+                    } else {
+                        self.displayAddress = "\(street), \(city)"
+                    }
+
+                } else {
+                    self.displayAddress = "\(street)"
+                }
             }
-        } else {
-            self.address = ""
-        }
-        
-        if let latitude = json["location"]["coordinate"]["latitude"].number {
-            self.latitude = latitude.doubleValue
-        }
-        if let longitude = json["location"]["coordinate"]["longitude"].number {
-            self.longitude = longitude.doubleValue
+            
+            if let coordinate = location["coordinate"]?.dictionary {
+                if let latitude = coordinate["latitude"]?.number {
+                    self.latitude = latitude.doubleValue
+                }
+                if let longitude = coordinate["longitude"]?.number {
+                    self.longitude = longitude.doubleValue
+                }
+            }
         }
         
         if let numberOfReviews = json["review_count"].int {

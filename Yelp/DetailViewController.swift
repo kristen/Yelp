@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MapKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, MKMapViewDelegate {
 
     var business: Business!
     @IBOutlet weak var thumbImageView: UIImageView!
@@ -21,22 +22,25 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var reviewImageView: UIImageView!
     @IBOutlet weak var reviewLabel: UILabel!
     @IBOutlet weak var phoneButton: UIButton!
+    @IBOutlet weak var businessMapView: MKMapView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
-        
+        businessMapView.delegate = self
         navigationItem.title = "Yelp"
         updateUI()
         
         reviewImageView.layer.cornerRadius = 3
         reviewImageView.clipsToBounds = true
-
+        updateMapViewAnnotation()
     }
 
     func updateUI() {
+        thumbImageView.contentMode = .ScaleAspectFill
+        thumbImageView.clipsToBounds = true
         if let imageURL = business.imageURL {
             let url = NSURL(string: imageURL)
             thumbImageView.setImageWithURLRequest(NSMutableURLRequest(URL: url!), placeholderImage: nil, success: { (request, response, image) -> Void in
@@ -57,7 +61,7 @@ class DetailViewController: UIViewController {
             ratingImageView.setImageWithURL(NSURL(string: ratingImageURL))
         }
         numberOfReviewsLabel.text = "\(business.numberOfReviews) Reviews"
-        addressLabel.text = business.address
+        addressLabel.text = business.displayAddress
         categoryLabel.text = business.categories
 
         if let recomendedReviewImageUrl = business.recomendedReviewImageUrl {
@@ -89,5 +93,10 @@ class DetailViewController: UIViewController {
         }
         
     }
-
+    
+    func updateMapViewAnnotation() {
+        businessMapView.removeAnnotations(businessMapView.annotations)
+        businessMapView.addAnnotation(business)
+        businessMapView.showAnnotations([business], animated: true)
+    }
 }

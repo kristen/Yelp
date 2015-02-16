@@ -72,6 +72,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
             
             self.businessTableView.reloadData()
+            self.updateMapViewAnnotations()
             MBProgressHUD.hideHUDForView(self.view, animated: true)
             
             }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in

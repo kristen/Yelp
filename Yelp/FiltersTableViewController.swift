@@ -117,6 +117,7 @@ class FiltersTableViewController: UIViewController, UITableViewDataSource, UITab
         
         if indexPath.section == Filters.Categories.rawValue && indexPath.row == defaultCategoriesShown - 1 && !seeAllCategories {
             seeAllCategories = true
+
         } else {
             selectedFiltersIndex[indexPath.section] = indexPath.row   
         }
@@ -129,6 +130,7 @@ class FiltersTableViewController: UIViewController, UITableViewDataSource, UITab
             let cell = tableView.dequeueReusableCellWithIdentifier("LabelCell") as LabelCell
 
             cell.titleLabel.text = "Show All"
+            cell.accessoryType = .None
             
             return cell
         case Filters.MostPopular.rawValue, Filters.Categories.rawValue:
@@ -148,9 +150,9 @@ class FiltersTableViewController: UIViewController, UITableViewDataSource, UITab
             let cell = tableView.dequeueReusableCellWithIdentifier("LabelCell") as LabelCell
             cell.titleLabel.text = self.filtersBySection[indexPath.section].1[indexPath.row]
             if (indexPath.row == selectedFiltersIndex[indexPath.section]) {
-                cell.accessoryType = .Checkmark;
+                cell.accessoryType = .Checkmark
             } else {
-                cell.accessoryType = .None;
+                cell.accessoryType = .None
             }
             return cell
         }
