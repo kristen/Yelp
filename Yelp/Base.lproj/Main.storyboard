@@ -120,7 +120,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="0.07 mi" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cs9-Pf-txv">
-                                        <rect key="frame" x="551" y="29" width="42" height="15"/>
+                                        <rect key="frame" x="550" y="28" width="42" height="15"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -149,6 +149,7 @@
                                     <constraint firstItem="uYC-sv-url" firstAttribute="centerY" secondItem="cs9-Pf-txv" secondAttribute="centerY" id="7me-Sc-06e"/>
                                     <constraint firstItem="GUy-hI-7ZS" firstAttribute="leading" secondItem="4I7-06-RPk" secondAttribute="leading" constant="8" id="AN9-qT-wiy"/>
                                     <constraint firstItem="Dtn-jm-YeO" firstAttribute="leading" secondItem="4I7-06-RPk" secondAttribute="leading" constant="8" id="HLy-EX-swl"/>
+                                    <constraint firstItem="cs9-Pf-txv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uYC-sv-url" secondAttribute="trailing" constant="8" id="ZoM-NJ-83h"/>
                                     <constraint firstAttribute="centerY" secondItem="GUy-hI-7ZS" secondAttribute="centerY" id="ZrK-84-yTE"/>
                                     <constraint firstItem="S9l-FY-wxi" firstAttribute="centerY" secondItem="GUy-hI-7ZS" secondAttribute="centerY" id="a1n-QR-l51"/>
                                     <constraint firstAttribute="trailing" secondItem="cs9-Pf-txv" secondAttribute="trailing" constant="8" id="bIk-jE-QsI"/>
@@ -161,7 +162,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YeM-Zi-2tI">
-                                <rect key="frame" x="49" y="313" width="114" height="29"/>
+                                <rect key="frame" x="49" y="312.5" width="114" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="+1-415-590-7121">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -178,18 +179,18 @@
                                 </constraints>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Call" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ics-ca-Aqk">
-                                <rect key="frame" x="16" y="319" width="25" height="17"/>
+                                <rect key="frame" x="16" y="318.5" width="25" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88 Division St, San Francisco, CA 94109" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0P-Wn-oEv">
-                                <rect key="frame" x="16" y="296" width="226" height="15"/>
+                                <rect key="frame" x="16" y="296" width="225.5" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recomended Reviews" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2Y-AT-yjC">
-                                <rect key="frame" x="16" y="350" width="148" height="17"/>
+                                <rect key="frame" x="16" y="349.5" width="148" height="16.5"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
