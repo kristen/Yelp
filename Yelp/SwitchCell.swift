@@ -30,7 +30,7 @@ class SwitchCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    @IBAction func switchValueChanged(sender: AnyObject) {
+    @IBAction private func switchValueChanged(sender: AnyObject) {
         delegate?.switchCell(self, didUpdateValue: toggleSwitch.on)
     }
 }

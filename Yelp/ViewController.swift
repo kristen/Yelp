@@ -12,18 +12,18 @@ import MapKit
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, UISearchBarDelegate, FiltersViewControllerDelegate {
     var client: YelpClient!
     
-    @IBOutlet weak var businessMapView: MKMapView! // make strong?
-    @IBOutlet weak var businessTableView: UITableView! // make strong?
-    let yelpConsumerKey = "kRyJ7J0tzSytiDxknPNS3Q"
-    let yelpConsumerSecret = "9ghoeZyZXYUR0GDnHnEdfqoqLkk"
-    let yelpToken = "Gdz-5v2nxZYXLhWYT5sKUmHYj3Lr3sg8"
-    let yelpTokenSecret = "BxxPae9UJmonyoNUXqtKx0PlgQk"
+    @IBOutlet private weak var businessMapView: MKMapView! // make strong?
+    @IBOutlet private weak var businessTableView: UITableView! // make strong?
+    private let yelpConsumerKey = "kRyJ7J0tzSytiDxknPNS3Q"
+    private let yelpConsumerSecret = "9ghoeZyZXYUR0GDnHnEdfqoqLkk"
+    private let yelpToken = "Gdz-5v2nxZYXLhWYT5sKUmHYj3Lr3sg8"
+    private let yelpTokenSecret = "BxxPae9UJmonyoNUXqtKx0PlgQk"
 
-    var businesses = [Business]()
-    var searchController: UISearchController!
-    let businessLimit = 20
-    var scrollOffset = 20
-    var searchTerm = "Restaurant"
+    private var businesses = [Business]()
+    private var searchController: UISearchController!
+    private let businessLimit = 20
+    private var scrollOffset = 20
+    private var searchTerm = "Restaurant"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +59,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         fetchBusinessesWithQuery(searchTerm, params: ["limit": "20"])
     }
     
-    func fetchBusinessesWithQuery(query: String, params: [String: String] = [:]) {
+    private func fetchBusinessesWithQuery(query: String, params: [String: String] = [:]) {
         MBProgressHUD.showHUDAddedTo(view, animated: true)
         client.searchWithTerm(query, additionalParams: params, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
             let json = JSON(response)
@@ -81,7 +81,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     }
     
-    func fetchInfiniteScrollBusinessesWithQuery(query: String, params: [String: String] = [:]) {
+    private func fetchInfiniteScrollBusinessesWithQuery(query: String, params: [String: String] = [:]) {
 
         client.searchWithTerm(query, additionalParams: params, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
             let json = JSON(response)
@@ -136,7 +136,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    func updateMapViewAnnotations() {
+    private func updateMapViewAnnotations() {
         businessMapView.removeAnnotations(businessMapView.annotations)
         businessMapView.addAnnotations(businesses)
         businessMapView.showAnnotations(businesses, animated: true)
@@ -150,6 +150,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             view.canShowCallout = true
             
             let imageView = UIImageView(frame: CGRectMake(0, 0, 46, 46))
+            imageView.contentMode = UIViewContentMode.ScaleAspectFit
             imageView.setImageWithURL(NSURL(string:(annotation as Business).imageURL!))
             view.leftCalloutAccessoryView = imageView
             let disclosureButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
@@ -166,7 +167,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let detailsViewController = storyboard.instantiateViewControllerWithIdentifier("DetailViewController") as DetailViewController
         detailsViewController.business = view.annotation as Business
-        
+
         navigationController?.pushViewController(detailsViewController, animated: true)
     }
     
@@ -174,6 +175,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         searchTerm = searchController.searchBar.text
         fetchBusinessesWithQuery(searchTerm)
     }
+    
     func onFilterButton() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let filtersViewController = storyboard.instantiateViewControllerWithIdentifier("FiltersTableViewController") as FiltersTableViewController

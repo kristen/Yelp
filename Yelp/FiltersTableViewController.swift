@@ -14,26 +14,26 @@ protocol FiltersViewControllerDelegate : class {
 
 class FiltersTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SwitchCellDelegate {
 
-    @IBOutlet weak var filtersTableView: UITableView!
+    @IBOutlet private weak var filtersTableView: UITableView!
     weak var delegate: FiltersViewControllerDelegate?
-    var categories: [[String:String]]!
-    var filtersBySection: [(String, [String])]!
-    let radius = ["40000", "200", "600", "1609", "8046"]
-    var seeAllCategories = false
-    let defaultCategoriesShown = 5
+    private var categories: [[String:String]]!
+    private var filtersBySection: [(String, [String])]!
+    private let radius = ["40000", "200", "600", "1609", "8046"]
+    private var seeAllCategories = false
+    private let defaultCategoriesShown = 5
     
     enum Filters: Int {
         case MostPopular = 0, Distance, SortBy, Categories
     }
     
-    var selectedFiltersIndex = [0,0,0]
+    private var selectedFiltersIndex = [0,0,0]
 
-    var selectedCategories = NSMutableSet()
+    private var selectedCategories = NSMutableSet()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = NSUserDefaults.standardUserDefaults()
         selectedFiltersIndex[Filters.MostPopular.rawValue] = defaults.integerForKey("Filters_MostPopular")
         selectedFiltersIndex[Filters.Distance.rawValue] = defaults.integerForKey("Filters_Distance")
         selectedFiltersIndex[Filters.SortBy.rawValue] = defaults.integerForKey("Filters_SortBy")
@@ -65,7 +65,7 @@ class FiltersTableViewController: UIViewController, UITableViewDataSource, UITab
         filtersTableView.reloadData()
     }
 
-    func filters() -> [String: String] {
+    private func filters() -> [String: String] {
         var filters = [String : String]()
     
         var names = [String]()
@@ -93,7 +93,7 @@ class FiltersTableViewController: UIViewController, UITableViewDataSource, UITab
 
         // save into nsuserdefaults
         
-        var defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = NSUserDefaults.standardUserDefaults()
         
         defaults.setInteger(dealValue, forKey: "Filters_MostPopular")
         defaults.setInteger(radiusValue, forKey: "Filters_Distance")
@@ -102,13 +102,11 @@ class FiltersTableViewController: UIViewController, UITableViewDataSource, UITab
         
         defaults.synchronize()
 
-        
         return filters
     }
 
     // MARK: - Table view data source
     
-
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return filtersBySection.count
     }
@@ -194,7 +192,7 @@ class FiltersTableViewController: UIViewController, UITableViewDataSource, UITab
         }   
     }
     
-    func getCategories() -> [[String: String]] {
+    private func getCategories() -> [[String: String]] {
         // https://gist.github.com/wfalkwallace/6dd00fc2dae4c43103f6
         
         var categories: Array<[String:String]> = [

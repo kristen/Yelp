@@ -10,13 +10,13 @@ import UIKit
 
 class BusinessCell: UITableViewCell {
     
-    @IBOutlet weak var thumbImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var ratingImageView: UIImageView!
-    @IBOutlet weak var numberOfReviewsLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet private weak var thumbImageView: UIImageView!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var distanceLabel: UILabel!
+    @IBOutlet private weak var ratingImageView: UIImageView!
+    @IBOutlet private weak var numberOfReviewsLabel: UILabel!
+    @IBOutlet private weak var addressLabel: UILabel!
+    @IBOutlet private weak var categoryLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,7 +34,7 @@ class BusinessCell: UITableViewCell {
     }
     
     func setBusiness(business: Business, forIndex index: Int) {
-        
+        thumbImageView.contentMode = UIViewContentMode.ScaleAspectFit
         if let imageURL = business.imageURL {
             let url = NSURL(string: imageURL)
             thumbImageView.setImageWithURLRequest(NSMutableURLRequest(URL: url!), placeholderImage: nil, success: { (request, response, image) -> Void in
@@ -51,6 +51,7 @@ class BusinessCell: UITableViewCell {
         nameLabel.text = "\(index + 1). \(business.name)"
         let distance = NSString(format: "%.2f", business.distance)
         distanceLabel.text = "\(distance) mi"
+        ratingImageView.contentMode = .ScaleAspectFit
         if let ratingImageURL = business.ratingImageUrl {
             ratingImageView.setImageWithURL(NSURL(string: ratingImageURL))
         }

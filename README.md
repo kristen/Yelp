@@ -33,7 +33,9 @@ Time spent: 20
 
 ### Walkthrough
 
-![Video Walkthrough](yelp.gif)
+![Video Walkthrough iPhone 5s](yelp.gif)
+
+![Video Walkthrough iPhone 6 Plus](yelp6plus.gif)
 
 Credits
 ---------

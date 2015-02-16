@@ -12,17 +12,17 @@ import MapKit
 class DetailViewController: UIViewController, MKMapViewDelegate {
 
     var business: Business!
-    @IBOutlet weak var thumbImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var ratingImageView: UIImageView!
-    @IBOutlet weak var numberOfReviewsLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var categoryLabel: UILabel!
-    @IBOutlet weak var reviewImageView: UIImageView!
-    @IBOutlet weak var reviewLabel: UILabel!
-    @IBOutlet weak var phoneButton: UIButton!
-    @IBOutlet weak var businessMapView: MKMapView!
+    @IBOutlet private weak var thumbImageView: UIImageView!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var distanceLabel: UILabel!
+    @IBOutlet private weak var ratingImageView: UIImageView!
+    @IBOutlet private weak var numberOfReviewsLabel: UILabel!
+    @IBOutlet private weak var addressLabel: UILabel!
+    @IBOutlet private weak var categoryLabel: UILabel!
+    @IBOutlet private weak var reviewImageView: UIImageView!
+    @IBOutlet private weak var reviewLabel: UILabel!
+    @IBOutlet private weak var phoneButton: UIButton!
+    @IBOutlet private weak var businessMapView: MKMapView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,15 +31,15 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
         
         businessMapView.delegate = self
         navigationItem.title = "Yelp"
-        updateUI()
         
         reviewImageView.layer.cornerRadius = 3
         reviewImageView.clipsToBounds = true
         updateMapViewAnnotation()
+        updateUI()
     }
 
-    func updateUI() {
-        thumbImageView.contentMode = .ScaleAspectFill
+    private func updateUI() {
+        thumbImageView.contentMode = UIViewContentMode.ScaleAspectFill
         thumbImageView.clipsToBounds = true
         if let imageURL = business.imageURL {
             let url = NSURL(string: imageURL)
@@ -57,6 +57,7 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
         nameLabel.text = business.name
         let distance = NSString(format: "%.2f", business.distance)
         distanceLabel.text = "\(distance) mi"
+        ratingImageView.contentMode = .ScaleAspectFit
         if let ratingImageURL = business.ratingImageUrl {
             ratingImageView.setImageWithURL(NSURL(string: ratingImageURL))
         }
@@ -64,9 +65,10 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
         addressLabel.text = business.displayAddress
         categoryLabel.text = business.categories
 
+        reviewImageView.contentMode = UIViewContentMode.ScaleAspectFit
         if let recomendedReviewImageUrl = business.recomendedReviewImageUrl {
             let url = NSURL(string: recomendedReviewImageUrl)
-            thumbImageView.setImageWithURLRequest(NSMutableURLRequest(URL: url!), placeholderImage: nil, success: { (request, response, image) -> Void in
+            reviewImageView.setImageWithURLRequest(NSMutableURLRequest(URL: url!), placeholderImage: nil, success: { (request, response, image) -> Void in
                 self.reviewImageView.image = image
                 if (request != nil && response != nil) {
                     self.reviewImageView.alpha = 0.0
@@ -94,7 +96,7 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
         
     }
     
-    func updateMapViewAnnotation() {
+    private func updateMapViewAnnotation() {
         businessMapView.removeAnnotations(businessMapView.annotations)
         businessMapView.addAnnotation(business)
         businessMapView.showAnnotations([business], animated: true)
